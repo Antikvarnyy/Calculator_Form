@@ -12,19 +12,16 @@ namespace Calculator
 {
     public partial class Form1 : Form
     {
+        double n1 = 0, res = 0;
+        char ch = ' ';
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void button0_Click(object sender, EventArgs e)
         {
-
+                textBox1.Text += 0;
         }
         private void button0_Enter(object sender, EventArgs e)
         {
@@ -39,6 +36,7 @@ namespace Calculator
 
         private void button1_Click(object sender, EventArgs e)
         {
+            textBox1.Text += 1;
         }
         private void button1_Enter(object sender, EventArgs e)
         {
@@ -53,7 +51,7 @@ namespace Calculator
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            textBox1.Text += 2;
         }
         private void button2_Enter(object sender, EventArgs e)
         {
@@ -68,7 +66,7 @@ namespace Calculator
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            textBox1.Text += 3;
         }
         private void button3_Enter(object sender, EventArgs e)
         {
@@ -83,7 +81,7 @@ namespace Calculator
 
         private void button4_Click(object sender, EventArgs e)
         {
-
+            textBox1.Text += 4;
         }
         private void button4_Enter(object sender, EventArgs e)
         {
@@ -98,7 +96,7 @@ namespace Calculator
 
         private void button5_Click(object sender, EventArgs e)
         {
-
+            textBox1.Text += 5;
         }
         private void button5_Enter(object sender, EventArgs e)
         {
@@ -113,7 +111,7 @@ namespace Calculator
 
         private void button6_Click(object sender, EventArgs e)
         {
-
+            textBox1.Text += 6;
         }
         private void button6_Enter(object sender, EventArgs e)
         {
@@ -128,7 +126,7 @@ namespace Calculator
 
         private void button7_Click(object sender, EventArgs e)
         {
-
+            textBox1.Text += 7;
         }
         private void button7_Enter(object sender, EventArgs e)
         {
@@ -142,7 +140,7 @@ namespace Calculator
         }
         private void button8_Click(object sender, EventArgs e)
         {
-
+            textBox1.Text += 8;
         }
         private void button8_Enter(object sender, EventArgs e)
         {
@@ -157,7 +155,7 @@ namespace Calculator
 
         private void button9_Click(object sender, EventArgs e)
         {
-
+            textBox1.Text += 9;
         }
         private void button9_Enter(object sender, EventArgs e)
         {
@@ -172,7 +170,7 @@ namespace Calculator
 
         private void buttonDot_Click(object sender, EventArgs e)
         {
-
+            textBox1.Text += ',';
         }
         private void buttonDot_Enter(object sender, EventArgs e)
         {
@@ -187,7 +185,18 @@ namespace Calculator
 
         private void buttonEq_Click(object sender, EventArgs e)
         {
-
+            if (textBox1.Text != "" && ch != ' ')
+            {
+                if (ch == '+')
+                    res = n1 + Convert.ToDouble(textBox1.Text);
+                else if (ch == '-')
+                    res = n1 - Convert.ToDouble(textBox1.Text);
+                else if (ch == '*')
+                    res = n1 * Convert.ToDouble(textBox1.Text);
+                else if (ch == '/')
+                    res = n1 / Convert.ToDouble(textBox1.Text);
+                textBox1.Text = $"{res}";
+            }
         }
         private void buttonEq_Enter(object sender, EventArgs e)
         {
@@ -202,7 +211,12 @@ namespace Calculator
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-
+            if (textBox1.Text != "")
+            {
+                n1 += Convert.ToDouble(textBox1.Text);
+                ch = '+';
+                textBox1.Text = "";
+            }
         }
         private void buttonAdd_Enter(object sender, EventArgs e)
         {
@@ -217,7 +231,17 @@ namespace Calculator
 
         private void buttonSub_Click(object sender, EventArgs e)
         {
-
+            if (textBox1.Text != "")
+            {
+                if (n1 == 0)
+                    n1 += Convert.ToDouble(textBox1.Text);
+                else
+                {
+                    n1 -= Convert.ToDouble(textBox1.Text);
+                }
+                ch = '-';
+                textBox1.Text = "";
+            }
         }
         private void buttonSub_Enter(object sender, EventArgs e)
         {
@@ -232,7 +256,17 @@ namespace Calculator
 
         private void buttonMult_Click(object sender, EventArgs e)
         {
-
+            if (textBox1.Text != "")
+            {
+                if (n1 == 0)
+                    n1 += Convert.ToDouble(textBox1.Text);
+                else
+                {
+                    n1 *= Convert.ToDouble(textBox1.Text);
+                }
+                ch = '*';
+                textBox1.Text = "";
+            }
         }
         private void buttonMult_Enter(object sender, EventArgs e)
         {
@@ -247,7 +281,17 @@ namespace Calculator
 
         private void buttonDiv_Click(object sender, EventArgs e)
         {
-
+            if (textBox1.Text != "")
+            {
+                if (n1 == 0)
+                    n1 += Convert.ToDouble(textBox1.Text);
+                else
+                {
+                    n1 /= Convert.ToDouble(textBox1.Text);
+                }
+                ch = '/';
+                textBox1.Text = "";
+            }
         }
         private void buttonDiv_Enter(object sender, EventArgs e)
         {
@@ -262,13 +306,17 @@ namespace Calculator
 
         private void buttonClean_Click(object sender, EventArgs e)
         {
-
+            n1 = 0;
+            res = 0;
+            textBox1.Text = "";
+            ch = ' ';
         }
         private void buttonClean_Enter(object sender, EventArgs e)
         {
             buttonClean.BackColor = Color.Coral;
             buttonClean.ForeColor = Color.Black;
         }
+
         private void buttonClean_Leave(object sender, EventArgs e)
         {
             buttonClean.BackColor = Color.Black;
